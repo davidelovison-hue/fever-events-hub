@@ -1,0 +1,229 @@
+/* Fonts: same WOFF2 files as https://pacha.com (Next.js /_next/static/media) */
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('https://pacha.com/_next/static/media/TT_Hoves_Regular-s.p.9a88e791.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('https://pacha.com/_next/static/media/TT_Hoves_Medium-s.p.f1c62054.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('https://pacha.com/_next/static/media/TT_Hoves_DemiBold-s.p.dd28484a.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('https://pacha.com/_next/static/media/TT_Hoves_Bold-s.p.9ed2cfa0.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Supreme LL';
+  src: url('https://pacha.com/_next/static/media/SupremeLL_Regular-s.p.d8dda92f.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Supreme LL';
+  src: url('https://pacha.com/_next/static/media/SupremeLL_Medium-s.p.a62e6bb4.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Supreme LL';
+  src: url('https://pacha.com/_next/static/media/SupremeLL-Bold.5187aa3a.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montia';
+  src:
+    url('/fonts/montia.woff2') format('woff2'),
+    url('https://pacha.com/_next/static/media/MonitaSignaturePERSONALUSE-Regular.08d4f0e9.woff2')
+      format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Pacha cherry — values from pacha.com compiled CSS */
+  --pacha-cherry: #c10230;
+  --pacha-cherry-mid: #bb092c;
+  --pacha-cherry-deep: #9a0724;
+  --pacha-cherry-glow: rgba(193, 2, 48, 0.55);
+  /* Pacha wordmark leaf / accent green (pairs with cherry on logo) */
+  --pacha-logo-green: #009e52;
+  --pacha-logo-green-mid: #0cb863;
+  --pacha-logo-green-glow: rgba(0, 158, 82, 0.45);
+  --pacha-ice: rgba(56, 152, 236, 0.18);
+  --pacha-black: #181a1b;
+  --pacha-warm: #efeeec;
+  --pacha-stone: #cbc8c5;
+
+  /* CTAs — pacha.com ticket buttons (#181a1b → cherry on hover) */
+  --pacha-cta-radius: 0.7rem;
+  --pacha-cta-ticket-bg: var(--pacha-black);
+  --pacha-cta-ticket-fg: #ffffff;
+  --pacha-cta-ticket-label: rgba(255, 255, 255, 0.78);
+  --pacha-cta-ticket-hover-bg: var(--pacha-cherry);
+  --pacha-cta-ticket-hover-fg: #ffffff;
+  --pacha-cta-primary-bg: var(--pacha-cta-ticket-bg);
+  --pacha-cta-primary-fg: var(--pacha-cta-ticket-fg);
+  --pacha-cta-primary-hover-bg: var(--pacha-cta-ticket-hover-bg);
+  --pacha-cta-primary-hover-fg: var(--pacha-cta-ticket-hover-fg);
+  --pacha-cta-vip-bg: var(--pacha-cta-ticket-bg);
+  --pacha-cta-vip-hover-bg: var(--pacha-cherry-mid);
+  --pacha-cta-vip-fg: var(--pacha-cta-ticket-fg);
+  --pacha-cta-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --pacha-cta-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.28);
+
+  /* Semantic aliases for App.css */
+  --primary: var(--pacha-cherry);
+  --primary-dark: var(--pacha-cherry-deep);
+  --primary-mid: var(--pacha-cherry-mid);
+  --primary-light: #ffd6df;
+  --text: var(--pacha-black);
+  --muted: #6e6e6e;
+  --pacha-site-muted: #6e6e6e;
+  --bg: #000000;
+  --bg-elevated: #0f0f0f;
+  --page-wash-top: #000000;
+  --page-wash-mid: #000000;
+  --page-wash-deep: #000000;
+  --page-wash-bottom: #000000;
+  --card: #121014;
+  --card-hover: #18161c;
+  --border: rgba(255, 255, 255, 0.1);
+
+  /* Nightlife surfaces — Pacha-aligned */
+  --pacha-void: #020103;
+  --pacha-surface: rgba(8, 5, 12, 0.92);
+  --pacha-glass: rgba(4, 2, 8, 0.78);
+  --pacha-line: rgba(255, 255, 255, 0.1);
+  --pacha-line-dim: rgba(255, 255, 255, 0.06);
+  --pacha-red-mist: rgba(193, 2, 48, 0.14);
+  --pacha-red-glow: rgba(193, 2, 48, 0.28);
+
+  --font-display: 'Supreme LL', 'TT Hoves', system-ui, sans-serif;
+  --font-ui: 'TT Hoves', system-ui, sans-serif;
+  --font-familia: Montia, 'Allura', cursive;
+
+  /* Page canvas — pacha.com/events (black + blue depth + green left) */
+  --pacha-bg-blue: #0d2a37;
+  --pacha-bg-blue-rgb: 13, 42, 55;
+  --page-canvas-base: #000000;
+  --page-canvas-mid: #06080c;
+  --page-canvas-deep: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+html {
+  color-scheme: dark;
+  min-height: 100%;
+  background-color: #000;
+  /* overflow-x on html breaks position:sticky for descendants in several engines */
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--page-canvas-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fixed ambient wash — matches pacha.com/events (green left, blue depth, soft cherry top) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #000;
+  background-image:
+    radial-gradient(
+      ellipse 72% 88% at -12% 48%,
+      rgba(0, 158, 82, 0.28) 0%,
+      rgba(0, 158, 82, 0.08) 38%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 50% 42% at 4% 92%,
+      rgba(0, 199, 88, 0.14) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 85% 72% at 108% 58%,
+      rgba(var(--pacha-bg-blue-rgb), 0.62) 0%,
+      rgba(var(--pacha-bg-blue-rgb), 0.22) 42%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 78% 8%,
+      rgba(var(--pacha-bg-blue-rgb), 0.38) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 110% 70% at 50% -15%,
+      rgba(193, 2, 48, 0.14) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      175deg,
+      #0a1218 0%,
+      #05070a 32%,
+      #000000 58%,
+      #010102 100%
+    );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: transparent;
+}
+
+/* Lenis: avoid height lock + keep native smooth-scroll off (Lenis drives scroll) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+

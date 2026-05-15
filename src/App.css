@@ -1,0 +1,1951 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  background: transparent;
+}
+
+/* —— WHL shell: matches pacha.com retail (flat black, minimal chrome) —— */
+.whlMain {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+}
+
+/* —— Night hero: cherry + Ticketclub-style featured banner —— */
+.nightHero {
+  --nh-cherry: var(--pacha-cherry, #c10230);
+  position: relative;
+  isolation: isolate;
+  margin: 0 -1rem;
+  width: calc(100% + 2rem);
+  overflow: visible;
+  min-height: 0;
+  background: transparent;
+}
+
+.nightHero__floor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Hero-only lift — global wash lives on body::before */
+  background:
+    radial-gradient(ellipse 85% 50% at 50% 0%, rgba(193, 2, 48, 0.1), transparent 62%),
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.nightHero__fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 6rem;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(4, 2, 6, 0.65) 100%);
+}
+
+.nightHero__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.nightHero__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nightHero__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 0 1.35rem;
+  margin: 0;
+  overflow: visible;
+}
+
+.nightHero__cherryLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  padding: 0.35rem;
+  text-decoration: none;
+}
+
+.nightHero__cherryGlow {
+  position: absolute;
+  inset: -18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(193, 2, 48, 0.45) 0%,
+    rgba(0, 158, 82, 0.15) 45%,
+    transparent 72%
+  );
+  filter: blur(14px);
+  animation: nightHeroCherryPulse 3.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes nightHeroCherryPulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.nightHero__cherry {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: clamp(4rem, 16vw, 6.25rem);
+  height: auto;
+  filter: drop-shadow(0 8px 28px rgba(193, 2, 48, 0.4));
+}
+
+.nightHero__cherryLink:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+
+/* Featured banner — single slide (ticketclub.es pattern) */
+.nightHero__banner {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nightHero__bannerViewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(13rem, 44vw, 24rem);
+  max-height: min(24rem, 56vh);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  background: #0a0608;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.nightHero__bannerSlide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+
+.nightHero__bannerSlide:disabled {
+  cursor: not-allowed;
+}
+
+.nightHero__bannerSlide:focus-visible {
+  outline: 2px solid var(--nh-cherry);
+  outline-offset: 3px;
+}
+
+.nightHero__bannerMedia {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0a0608;
+}
+
+.nightHero__bannerImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.04);
+}
+
+.nightHero__bannerVeil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 2, 6, 0.15) 0%,
+    rgba(4, 2, 6, 0.25) 40%,
+    rgba(4, 2, 6, 0.82) 100%
+  );
+}
+
+.nightHero__bannerBody {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 1.1rem 1.15rem 1.15rem;
+  padding-right: 3.5rem;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.nightHero__bannerVenue {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.nightHero__bannerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: min(100%, 36rem);
+}
+
+.nightHero__bannerMeta {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.nightHero__bannerPrice {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--pacha-logo-green);
+}
+
+.nightHero__bannerSold {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nightHero__bannerCta {
+  margin-top: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--pacha-cta-radius);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pacha-cta-ticket-fg);
+  background: var(--pacha-cta-ticket-bg);
+  box-shadow: var(--pacha-cta-shadow-soft);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.nightHero__bannerSlide:hover:not(:disabled) .nightHero__bannerCta {
+  color: var(--pacha-cta-ticket-hover-fg);
+  background: var(--pacha-cta-ticket-hover-bg);
+}
+
+.nightHero__bannerArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.nightHero__bannerArrow:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.nightHero__bannerArrow:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.nightHero__bannerArrow--prev {
+  left: 0.65rem;
+}
+
+.nightHero__bannerArrow--next {
+  right: 0.65rem;
+}
+
+.nightHero__bannerFoot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 5vw, 2rem);
+  margin-top: 0.75rem;
+  padding: 0 0.15rem 0.25rem;
+}
+
+.nightHero__bannerNav {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  background: none;
+  border: none;
+  padding: 0.25rem 0.15rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease;
+}
+
+.nightHero__bannerNav:hover {
+  color: #fff;
+}
+
+.nightHero__bannerNav:focus-visible {
+  outline: 2px solid var(--nh-cherry);
+  outline-offset: 2px;
+}
+
+.nightHero__bannerStatus {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .nightHero__content {
+    padding-inline: 1.5rem;
+  }
+
+  .nightHero__brand {
+    padding-bottom: 1.5rem;
+  }
+
+  .nightHero__bannerViewport {
+    min-height: clamp(15rem, 36vw, 24rem);
+  }
+
+  .nightHero__bannerBody {
+    padding: 1.25rem 1.5rem 1.35rem;
+    padding-right: 4rem;
+  }
+
+  .nightHero__bannerArrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.nightHero--static .nightHero__cherryGlow {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nightHero__cherryGlow {
+    animation: none !important;
+  }
+}
+
+/* Pacha.com link underline (from compiled site CSS) */
+.underline-animate {
+  position: relative;
+  text-decoration: none;
+}
+
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform 0.25s ease;
+}
+
+.underline-animate:hover::after {
+  transform: scaleX(1);
+  transform-origin: 0% 50%;
+}
+
+/* —— Top banner — pixel match https://pacha.com/events header —— */
+.pachaTopBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  height: 5rem;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 0;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pachaTopBanner__nav {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 0.5rem 3rem;
+  border-radius: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__nav {
+    padding-inline: 3rem;
+  }
+}
+
+.pachaTopBanner__logo {
+  flex-shrink: 0;
+  display: inline-block;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.pachaTopBanner__logo img {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.pachaTopBanner__desk {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 0 0 0.125rem;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__desk {
+    display: flex;
+  }
+}
+
+/* Balances burger width on desktop so the pill looks centered */
+.pachaTopBanner__navEnd {
+  display: none;
+  flex-shrink: 0;
+  width: 3.7em;
+  height: 2.5em;
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__navEnd {
+    display: block;
+  }
+}
+
+.pachaTopBanner__deskItem {
+  list-style: none;
+  align-self: stretch;
+}
+
+.pachaTopBanner__link {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.pachaTopBanner__burger {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.7em;
+  height: 2.5em;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pachaTopBanner__burgerBox {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.pachaTopBanner__burgerLine {
+  position: absolute;
+  left: 50%;
+  width: 1.875em;
+  height: 0.125em;
+  background: #fff;
+  transform: translateX(-50%);
+  transition: transform 0.3s ease, top 0.3s ease;
+}
+
+.pachaTopBanner__burgerLine--a {
+  top: 35%;
+}
+
+.pachaTopBanner__burgerLine--b {
+  top: 55%;
+}
+
+.pachaTopBanner__burgerBox--open .pachaTopBanner__burgerLine--a {
+  top: 45%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.pachaTopBanner__burgerBox--open .pachaTopBanner__burgerLine--b {
+  top: 45%;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__burger {
+    display: none;
+  }
+}
+
+.pachaTopBanner__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  background: var(--pacha-cherry);
+  pointer-events: none;
+  touch-action: auto;
+  transition: height 0.4s ease;
+}
+
+.pachaTopBanner__overlay--open {
+  height: 100%;
+  min-height: 100dvh;
+  pointer-events: auto;
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__overlay {
+    display: none;
+  }
+}
+
+.pachaTopBanner__drawer {
+  display: flex;
+  min-height: 100dvh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 5rem 1rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.pachaTopBanner__drawerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  max-width: 42rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .pachaTopBanner__drawerList {
+    gap: 0.75rem;
+  }
+}
+
+.pachaTopBanner__drawerItem {
+  width: 100%;
+  text-align: center;
+  list-style: none;
+}
+
+.pachaTopBanner__drawerItemInner {
+  position: relative;
+  display: inline-block;
+}
+
+.pachaTopBanner__drawerLink {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 9vw, 3rem);
+  font-weight: 700;
+  line-height: 1.375;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+@media (max-width: 479px) {
+  .pachaTopBanner__drawerLink {
+    font-size: 2.25rem;
+  }
+}
+
+.pachaTopBanner__drawerLink.underline-animate::after {
+  background-color: #fff;
+}
+
+/* Artist carousel — below hero */
+.artistsCarousel {
+  position: relative;
+  z-index: 3;
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0 0 0.25rem;
+}
+
+.artistsCarousel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-inline: 0.15rem;
+}
+
+.artistsCarousel__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.artistsCarousel__hint {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+.artistsCarousel__track {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15rem 0.25rem 0.65rem;
+  margin: 0 -0.25rem;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.artistsCarousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.artistChip {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 4.75rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  scroll-snap-align: start;
+  text-align: center;
+  color: inherit;
+  font: inherit;
+}
+
+.artistChip:focus-visible {
+  outline: 2px solid var(--pacha-cherry);
+  outline-offset: 4px;
+  border-radius: 0.35rem;
+}
+
+.artistChip__avatar {
+  position: relative;
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid rgba(193, 2, 48, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.artistChip:hover .artistChip__avatar,
+.artistChip:focus-visible .artistChip__avatar {
+  border-color: var(--pacha-cherry);
+  transform: scale(1.04);
+  box-shadow:
+    0 0 0 1px rgba(193, 2, 48, 0.35),
+    0 8px 24px rgba(193, 2, 48, 0.2);
+}
+
+.artistChip__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.artistChip--soldOut .artistChip__img {
+  opacity: 0.45;
+  filter: grayscale(0.35);
+}
+
+.artistChip--soldOut .artistChip__avatar {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.artistChip__signal {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  transform: translate(-50%, 42%);
+  max-width: calc(100% + 0.35rem);
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  padding: 0.2rem 0.35rem;
+  border-radius: 0.2rem;
+  white-space: nowrap;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.artistChip__signal--low {
+  background: var(--pacha-cherry);
+}
+
+.artistChip__signal--soldOut {
+  background: #3a3a3a;
+  letter-spacing: 0.08em;
+}
+
+.artistChip__name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.artistChip__date {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .artistChip {
+    width: 5.25rem;
+  }
+
+  .artistChip__avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .artistChip__name {
+    font-size: 0.72rem;
+  }
+}
+
+.filterBar {
+  position: relative;
+  z-index: 3;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(4, 2, 6, 0.4);
+  backdrop-filter: blur(22px) saturate(1.1);
+  -webkit-backdrop-filter: blur(22px) saturate(1.1);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.28);
+  outline: none;
+}
+
+.filterBar:focus-visible {
+  outline: 1px solid var(--pacha-cherry);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.filterBarHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--pacha-line-dim);
+}
+
+.filterBarTitles {
+  min-width: 0;
+}
+
+.filterHeading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #fff;
+  margin: 0;
+}
+
+.btnFilterClear {
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pacha-cherry);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(193, 2, 48, 0.45);
+  padding: 0.15rem 0;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btnFilterClear:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.filterControls {
+  display: block;
+}
+
+.filterMonthsBlock {
+  flex: 1;
+  min-width: 0;
+  padding: 0.35rem 0 0;
+  margin-top: 0.35rem;
+  border-left: none;
+}
+
+.filterPills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.4rem 0.45rem;
+  justify-content: flex-start;
+}
+
+.pill {
+  flex: 0 1 auto;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  min-height: 2.35rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.pill:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--pacha-cherry);
+  outline-offset: 2px;
+}
+
+.pillActive {
+  font-weight: 700;
+  color: var(--pacha-cta-primary-hover-fg);
+  background: var(--pacha-cta-primary-hover-bg);
+  border-color: var(--pacha-cta-primary-hover-bg);
+  animation: none;
+}
+
+.eventsBlock {
+  margin-bottom: 0;
+  flex: 1;
+  background: transparent;
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin: 0;
+}
+
+.emptyStateLink {
+  font: inherit;
+  font-weight: 700;
+  color: var(--pacha-cherry);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(193, 2, 48, 0.45);
+  padding: 0;
+  cursor: pointer;
+  margin-left: 0.15rem;
+}
+
+.emptyStateLink:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+@media (min-width: 540px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* —— Agenda event card —— */
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #090909;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.eventCard:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.eventCard--selected {
+  border-color: rgba(193, 2, 48, 0.55);
+  box-shadow: 0 0 0 1px var(--pacha-cherry);
+}
+
+.eventCard--soldOut {
+  opacity: 0.9;
+}
+
+.eventCard--soldOut .eventCard__photo {
+  filter: grayscale(0.35) brightness(0.85);
+}
+
+.eventCard--soldOut.eventCard--selected {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: none;
+}
+
+.eventCard__open {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.eventCard__open:focus {
+  outline: none;
+}
+
+.eventCard__open:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.45);
+}
+
+.eventCard__visual {
+  position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.eventCard__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eventCard__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(185deg, rgba(0, 0, 0, 0.24) 0%, transparent 34%),
+    linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.46) 100%);
+  opacity: 0.78;
+}
+
+.eventCard__pill {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 3;
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.5rem;
+  color: #fff;
+  background: var(--pacha-cherry);
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.eventCard__soldOut {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2rem;
+  pointer-events: none;
+}
+
+.eventCard__soldOutBand {
+  display: block;
+  width: 92%;
+  transform: rotate(-7deg);
+  font-family: var(--font-ui);
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: var(--pacha-cherry);
+  padding: 0.4rem 0.35rem;
+}
+
+.eventCard__meta {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.32rem;
+  padding: 0.68rem 0.72rem 0.72rem;
+  background: linear-gradient(180deg, #141214 0%, #100f12 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.eventCard__name {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.76rem, 2.5vw, 0.95rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  min-height: 2.3em;
+  margin: 0;
+  color: #fff;
+  text-shadow: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.eventCard__when {
+  flex: 0 0 auto;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+  margin: 0;
+  min-height: 1.15em;
+}
+
+.eventCard__tickets {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.5rem 0.5rem 0.55rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0b0b;
+}
+
+.eventCard__pick {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.5rem;
+  position: relative;
+  width: 100%;
+  min-height: 3.15rem;
+  padding: 0.62rem 0.85rem 0.62rem 0.92rem;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--pacha-cta-radius);
+  background: #161616;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  box-shadow: var(--pacha-cta-shadow-soft);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.15s ease;
+}
+
+.eventCard__pick:last-child {
+  border-bottom: none;
+}
+
+.eventCard__pick:focus {
+  outline: none;
+}
+
+.eventCard__pick:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: none;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.45);
+}
+
+.eventCard__pick--entrada:hover:not(:disabled),
+.eventCard__pick--vip:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.eventCard__pick:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.eventCard__pickLead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+}
+
+.eventCard__pickLabel {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.eventCard__pickAside {
+  display: grid;
+  grid-template-columns: minmax(6.75rem, auto) 1.1rem;
+  align-items: center;
+  column-gap: 0.15rem;
+  flex-shrink: 0;
+}
+
+.eventCard__pickPrice {
+  font-family: var(--font-ui);
+  font-size: clamp(0.72rem, 2.8vw, 0.88rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: #fff;
+  min-width: 6.75rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.eventCard__pickPrice--empty {
+  visibility: hidden;
+}
+
+.eventCard__pickChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Entrada + VIP — pacha.com black ticket CTA (#181a1b → cherry on hover / selected) */
+.eventCard__pick--entrada,
+.eventCard__pick--vip {
+  background: var(--pacha-cta-ticket-bg);
+  border-color: var(--pacha-cta-ticket-bg);
+  color: var(--pacha-cta-ticket-fg);
+  box-shadow: var(--pacha-cta-shadow-soft);
+}
+
+.eventCard__pick--entrada .eventCard__pickLabel,
+.eventCard__pick--vip .eventCard__pickLabel {
+  color: var(--pacha-cta-ticket-label);
+}
+
+.eventCard__pick--entrada .eventCard__pickPrice,
+.eventCard__pick--vip .eventCard__pickPrice {
+  color: var(--pacha-cta-ticket-fg);
+}
+
+.eventCard__pick--entrada .eventCard__pickChevron,
+.eventCard__pick--vip .eventCard__pickChevron {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.eventCard__pick--entrada:hover:not(:disabled),
+.eventCard__pick--entrada.eventCard__pick--on,
+.eventCard__pick--vip:hover:not(:disabled),
+.eventCard__pick--vip.eventCard__pick--onVip {
+  background: var(--pacha-cta-ticket-hover-bg);
+  border-color: var(--pacha-cta-ticket-hover-bg);
+  color: var(--pacha-cta-ticket-hover-fg);
+  box-shadow: var(--pacha-cta-shadow);
+}
+
+.eventCard__pick--entrada:hover:not(:disabled) .eventCard__pickLabel,
+.eventCard__pick--entrada:hover:not(:disabled) .eventCard__pickPrice,
+.eventCard__pick--entrada.eventCard__pick--on .eventCard__pickLabel,
+.eventCard__pick--entrada.eventCard__pick--on .eventCard__pickPrice,
+.eventCard__pick--vip:hover:not(:disabled) .eventCard__pickLabel,
+.eventCard__pick--vip:hover:not(:disabled) .eventCard__pickPrice,
+.eventCard__pick--vip.eventCard__pick--onVip .eventCard__pickLabel,
+.eventCard__pick--vip.eventCard__pick--onVip .eventCard__pickPrice {
+  color: var(--pacha-cta-ticket-hover-fg);
+}
+
+.eventCard__pick--entrada:hover:not(:disabled) .eventCard__pickChevron,
+.eventCard__pick--entrada.eventCard__pick--on .eventCard__pickChevron,
+.eventCard__pick--vip:hover:not(:disabled) .eventCard__pickChevron,
+.eventCard__pick--vip.eventCard__pick--onVip .eventCard__pickChevron {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.eventCard:hover .eventCard__photo {
+  transform: scale(1.04);
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.45rem;
+  border-radius: 1px;
+  margin: 0 0 0.45rem;
+  background: var(--pacha-cherry);
+  color: #fff;
+  border: none;
+}
+
+/* —— Pacha.com/events end: residencies + month row + SHOW MORE —— */
+.pachaResidences {
+  margin-top: 2.5rem;
+  padding: 0 0 1.5rem;
+}
+
+.pachaResidences__track {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 1.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.pachaResidences__track::-webkit-scrollbar {
+  display: none;
+}
+
+.pachaResidenceCard {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  width: clamp(9.5rem, 28vw, 12.5rem);
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
+}
+
+.pachaResidenceCard__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pachaResidenceCard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.pachaResidenceCard:hover .pachaResidenceCard__img {
+  transform: scale(1.04);
+}
+
+.pachaResidenceCard__name {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.25;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.pachaResidences__filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  padding: 0.35rem 0;
+}
+
+.pachaResidences__months {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.pachaResidences__month {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.pachaResidences__month:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pachaResidences__month--active {
+  background: #fff;
+  color: #000;
+}
+
+.pachaResidences__month--active:hover {
+  background: #fff;
+}
+
+.pachaResidences__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  opacity: 0.95;
+}
+
+.pachaResidences__logo img {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.pachaResidences__moreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.pachaResidences__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17rem;
+  height: 2.8rem;
+  padding: 0.4rem 1.7rem;
+  border-radius: 9.75rem;
+  border: 1px solid rgba(153, 153, 153, 0.5);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.pachaResidences__more:hover {
+  opacity: 0.8;
+}
+
+/* —— Site footer: La Familia + social + legal (pacha.com/events) —— */
+.pachaFooter {
+  position: relative;
+  margin-top: 0;
+  padding: 10rem 0 3rem;
+  overflow: visible;
+  color: #fff;
+}
+
+.pachaFooter__inner {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Head block — pacha.com/events footer (relative mr-auto mb-16 flex-col) */
+.pachaFooter__familiaHead {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto 4rem 0;
+  max-width: 100%;
+  color: #fff;
+}
+
+.pachaFooter__familiaTitle {
+  margin: 1.25rem 0 0.625rem;
+  font-family: var(--font-familia);
+  font-size: clamp(2.75rem, 12vw, 4.5rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 2px 28px rgba(255, 255, 255, 0.06);
+}
+
+.pachaFooter__familiaTagline {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* animated-logo.gif — absolute -right-40 h-[151%] rotate-25 (pacha.com/events) */
+.pachaFooter__cherryAnim {
+  position: absolute;
+  top: 0;
+  right: -10rem;
+  width: auto;
+  height: 151%;
+  transform: rotate(25deg);
+  transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+  object-fit: contain;
+}
+
+.pachaFooter__familiaBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-bottom: 3rem;
+}
+
+.pachaFooter__brands {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.pachaFooter__brandLink {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  text-decoration: none;
+  color: #6e6e6e;
+  border-bottom: 1px solid rgba(13, 42, 55, 0.1);
+}
+
+.pachaFooter__brandLink:first-child {
+  border-top: 1px solid rgba(13, 42, 55, 0.1);
+}
+
+.pachaFooter__brandInner {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+  margin: -1px 0;
+  padding: 1rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  background: transparent;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pachaFooter__brandRule {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4rem;
+  height: 2px;
+  margin-left: -4rem;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.pachaFooter__brandLabel {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pachaFooter__brandLink--active .pachaFooter__brandInner,
+.pachaFooter__brandLink:hover .pachaFooter__brandInner,
+.pachaFooter__brandLink:focus-visible .pachaFooter__brandInner {
+  color: #fff;
+  border-color: #fff;
+  z-index: 1;
+}
+
+.pachaFooter__brandLink--active .pachaFooter__brandRule,
+.pachaFooter__brandLink:hover .pachaFooter__brandRule,
+.pachaFooter__brandLink:focus-visible .pachaFooter__brandRule {
+  opacity: 1;
+}
+
+.pachaFooter__preview {
+  display: none;
+}
+
+.pachaFooter__previewFrame {
+  position: relative;
+  width: 100%;
+  min-height: 14rem;
+  margin-top: 0;
+}
+
+.pachaFooter__previewImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.pachaFooter__previewImg[data-active='true'] {
+  opacity: 1;
+}
+
+.pachaFooter__social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.pachaFooter__socialLink {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.pachaFooter__socialLink:hover {
+  opacity: 0.7;
+}
+
+.pachaFooter__socialLink img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+.pachaFooter__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+.pachaFooter__legalLink {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+
+.pachaFooter__legalLink:hover {
+  color: #fff;
+}
+
+.pachaFooter__legalLink.underline-animate::after {
+  background-color: currentColor;
+}
+
+.pachaFooter__copy {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .pachaFooter__brandInner {
+    padding: 1.25rem 2rem;
+  }
+
+  .pachaFooter__brandRule {
+    display: block;
+  }
+
+  .pachaFooter__previewFrame {
+    min-height: 18rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .pachaFooter__inner {
+    padding-inline: 1rem;
+  }
+
+  .pachaFooter__familiaHead {
+    margin-bottom: 4rem;
+  }
+
+  .pachaFooter__familiaTitle {
+    font-size: 4.5rem;
+    line-height: 0.9;
+    letter-spacing: 0.03em;
+  }
+
+  .pachaFooter__cherryAnim {
+    right: -10rem;
+    height: 151%;
+  }
+
+  .pachaFooter__familiaBody {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .pachaFooter__brands {
+    padding-left: 4rem;
+  }
+
+  .pachaFooter__brandLink {
+    width: auto;
+    max-width: none;
+    border-bottom: none;
+  }
+
+  .pachaFooter__brandLink:first-child {
+    border-top: none;
+  }
+
+  .pachaFooter__brandInner {
+    padding: 1.5rem 2rem;
+  }
+
+  .pachaFooter__brandLabel {
+    font-size: 3rem;
+  }
+
+  .pachaFooter__preview {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 34rem;
+    padding-left: 0.5rem;
+    overflow: visible;
+  }
+
+  .pachaFooter__previewFrame {
+    position: relative;
+    width: min(100%, 26rem);
+    aspect-ratio: 3 / 4;
+    min-height: 28rem;
+    max-height: 38rem;
+    height: auto;
+    margin-top: -25%;
+    flex-shrink: 0;
+  }
+
+  .pachaFooter__previewImg {
+    object-position: center bottom;
+  }
+}
+
+@media (max-width: 991px) {
+  .pachaFooter {
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+
+  .pachaFooter__familiaHead {
+    margin-bottom: 0;
+  }
+
+  .pachaFooter__cherryAnim {
+    top: -2rem;
+    right: -4rem;
+    height: 70%;
+  }
+
+  .pachaFooter__brandRule {
+    display: none;
+  }
+
+  .pachaFooter__brandLabel {
+    white-space: normal;
+  }
+
+  .pachaFooter__brandLink--active .pachaFooter__brandInner,
+  .pachaFooter__brandLink:hover .pachaFooter__brandInner {
+    color: #fff;
+    border-color: #fff;
+  }
+}
+
+@media (max-width: 479px) {
+  .pachaFooter__brandInner {
+    padding: 1rem 1.25rem;
+    border-radius: 2rem;
+    width: 100%;
+  }
+
+  .pachaFooter__brandLabel {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eventCard:hover {
+    transform: none;
+  }
+
+  .eventCard:hover .eventCard__photo {
+    transform: none;
+  }
+
+}
