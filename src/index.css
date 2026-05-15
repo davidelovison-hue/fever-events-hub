@@ -44,7 +44,7 @@
 @font-face {
   font-family: 'Montia';
   src:
-    url('/fonts/montia.woff2') format('woff2'),
+    url('./assets/fonts/montia.woff2') format('woff2'),
     url('https://pacha.com/_next/static/media/MonitaSignaturePERSONALUSE-Regular.08d4f0e9.woff2')
       format('woff2');
   font-weight: 400;
