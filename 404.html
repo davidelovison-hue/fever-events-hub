@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Pacha Ibiza · Tickets</title>
-    <script type="text/javascript">
-      var pathSegmentsToKeep = 1
-      var l = window.location
-      l.replace(
-        l.protocol +
-          '//' +
-          l.hostname +
-          (l.port ? ':' + l.port : '') +
-          l.pathname
-            .split('/')
-            .slice(0, 1 + pathSegmentsToKeep)
-            .join('/') +
-          '/?/' +
-          l.pathname
-            .slice(1)
-            .split('/')
-            .slice(pathSegmentsToKeep)
-            .join('/')
-            .replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash,
-      )
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Tickets · Pacha Ibiza</title>
+    <link rel="preconnect" href="https://pacha.com" crossorigin />
+    <link rel="preconnect" href="https://pacha-production.s3.eu-west-1.amazonaws.com" crossorigin />
+    <link rel="preconnect" href="https://pacha-media-uploads.s3.us-east-1.amazonaws.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="/fever-events-hub/fonts/montia.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="https://pacha-media-uploads.s3.us-east-1.amazonaws.com/homepage/animated-logo.gif"
+      as="image"
+    />
+    <script type="module" crossorigin src="/fever-events-hub/assets/index-nMcymJzb.js"></script>
+    <link rel="stylesheet" crossorigin href="/fever-events-hub/assets/index-CQLlIcoh.css">
   </head>
-  <body></body>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
